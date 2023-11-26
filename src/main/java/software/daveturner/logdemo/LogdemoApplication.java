@@ -16,7 +16,7 @@ public class LogdemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		logger.info("Hello World");
+		logger.info("Hello World from " + logger.getName() + " using " + logger.getClass());
 		System.exit(0);
 	}
 }

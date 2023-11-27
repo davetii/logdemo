@@ -6,6 +6,8 @@ public class PersonInfo {
     private String email;
     private String role;
 
+    private String ssn;
+
     public String getName() {
         return name;
     }
@@ -26,10 +28,9 @@ public class PersonInfo {
         return role;
     }
 
-    public void setRoles(String role) {
-        this.role = role;
-    }
+    public void setRole(String role) { this.role = role; }
 
+    public String getSsn() { return ssn; }
 
-
+    public void setSsn(String ssn) { this.ssn = ssn; }
 }

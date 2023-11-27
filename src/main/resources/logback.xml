@@ -8,23 +8,28 @@
     <property name="compress-ext" value="zip" />
     <property name="archive.dir" value="archive" />
 
-    <appender name="Console"
-        class="ch.qos.logback.core.ConsoleAppender">
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>
-                %d{ISO8601} %highlight(%-5level) [%blue(%t)] %yellow(%C{1}): %msg%n%throwable
-            </Pattern>
-        </layout>
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="software.daveturner.logdemo.MaskingPatternLayout">
+                <maskPattern>(\w+@\w+\.\w+)</maskPattern> <!-- Email pattern, finds the patter and masks it -->
+                <maskPattern>\"ssn\"\s*:\s*\"(.*?)\"</maskPattern> <!-- finds the SSN field name and then masks the value -->
+                <Pattern>
+                    %d{ISO8601} %highlight(%-5level) [%blue(%t)] %yellow(%C{1}): %msg%n%throwable
+                </Pattern>
+            </layout>
+        </encoder>
     </appender>
 
-    <appender name="RollingFile"
-        class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logs.dir}/${logname}.${ext}</file>
-        <encoder
-            class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%d %p %C{1} [%t] %m%n</Pattern>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+           <!-- <Pattern>%d %p %C{1} [%t] %m%n</Pattern> -->
+            <layout class="software.daveturner.logdemo.MaskingPatternLayout">
+                <maskPattern>(\w+@\w+\.\w+)</maskPattern> <!-- Email pattern, finds the patter and masks it -->
+                <maskPattern>\"ssn\"\s*:\s*\"(.*?)\"</maskPattern> <!-- finds the SSN field name and then masks the value -->
+                <Pattern>%d %p %C{1} [%t] %m%n</Pattern>
+            </layout>
         </encoder>
-
         <rollingPolicy
             class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- rollover daily, add an increment and when the file reaches 5 KiloBytes -->
@@ -42,12 +47,10 @@
         </rollingPolicy>
     </appender>
 
-    <appender name="json"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="json" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logs.dir}/${logname}-json.${ext}</file>
         <encoder class="ch.qos.logback.classic.encoder.JsonEncoder"/>
-        <rollingPolicy
-                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- rollover daily, add an increment and when the file reaches 5 KiloBytes -->
             <fileNamePattern>${logs.dir}/${archive.dir}/${logname}-json-%d{yyyy-MM-dd}.%i.${ext}.${compress-ext}
             </fileNamePattern>
@@ -63,10 +66,32 @@
         </rollingPolicy>
     </appender>
 
-    <appender name="logstash"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="logstash" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logs.dir}/${logname}-logstash.${ext}</file>
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        <!--<encoder class="net.logstash.logback.encoder.LogstashEncoder"/> -->
+
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>
+                        {
+                        "@timestamp": "%date{yyyy-MM-dd'T'HH:mm:ss.SSSZZ}",
+                        "msg": "%msg",
+                        "log_type": "%level"
+                        }
+                    </pattern>
+                    <omitEmptyFields>true</omitEmptyFields>
+                </pattern>
+            </providers>
+            <logLevel>
+                INFO
+            </logLevel>
+            <jsonGeneratorDecorator class="net.logstash.logback.mask.MaskingJsonGeneratorDecorator">
+                <valueMasker class="software.daveturner.logdemo.CustomValueMasker"/>
+            </jsonGeneratorDecorator>
+            <timestampPattern>yyyy-MM-dd'T'HH:mm:ss.SSS</timestampPattern>
+        </encoder>
+        -->
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- rollover daily, add an increment and when the file reaches 5 KiloBytes -->

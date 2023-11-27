@@ -2,17 +2,26 @@
 	{
 		"name" :"Andrea", 
 		"email" : "andrea@yahoo.com" ,
-		"role" : "Bartender"
+		"role" : "Bartender",
+		"ssn" : "456-123-5465"
 	}, 
 	{
 		"name" :"Bob", 
 		"email" : "bob.1.bobo@google.com" ,
-		"role" : "Cook"
+		"role" : "Cook",
+		"ssn" : "366-555-3245"
 	}, 
 	{
 		"name" :"Connie", 
 		"email" : "connie@somejob.com" ,
-		"role" : "Waitress"
+		"role" : "Waitress",
+		"ssn" : "888-123-4562"
+	},
+	{
+		"name" :"Gary",
+		"email" : "noemailprovided" ,
+		"role" : "Dishwasher",
+		"ssn" : "abc"
 	}
 
 ]

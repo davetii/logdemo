@@ -5,7 +5,6 @@ public class PersonInfo {
     private String name;
     private String email;
     private String role;
-
     private String ssn;
 
     public String getName() {

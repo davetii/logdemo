@@ -28,9 +28,15 @@ public class PersonInfo {
         return role;
     }
 
-    public void setRole(String role) { this.role = role; }
+    public void setRole(String role) {
+        this.role = role;
+    }
 
-    public String getSsn() { return ssn; }
+    public String getSsn() {
+        return ssn;
+    }
 
-    public void setSsn(String ssn) { this.ssn = ssn; }
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
 }

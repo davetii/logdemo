@@ -8,8 +8,8 @@ import java.util.regex.*;
 import java.util.stream.*;
 
 public class CustomValueMasker implements ValueMasker {
-    private Pattern multilinePattern = Pattern.compile("\\\"email\\\"\\s*:\\s*\\\"(.*?)\\\"", Pattern.MULTILINE);;
-    private List<String> maskPatterns = new ArrayList<>();
+    private final Pattern multilinePattern = Pattern.compile("\\\"email\\\"\\s*:\\s*\\\"(.*?)\\\"", Pattern.MULTILINE);
+    private final List<String> maskPatterns = new ArrayList<>();
 
     private String maskMessage(String message) {
 

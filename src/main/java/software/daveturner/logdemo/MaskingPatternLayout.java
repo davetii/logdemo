@@ -10,7 +10,7 @@ import java.util.stream.*;
 
 public class MaskingPatternLayout extends PatternLayout {
     private Pattern multilinePattern;
-    private List<String> maskPatterns = new ArrayList<>();
+    private final List<String> maskPatterns = new ArrayList<>();
 
     public void addMaskPattern(String maskPattern) {
         maskPatterns.add(maskPattern);

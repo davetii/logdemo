@@ -8,7 +8,7 @@ logdemo is a Springboot based reference project for logging libraries and config
 * masking of sensitive private data in logback
   * https://github.com/davetii/logdemo/tree/logback-mask-sample
 * profile centric logging
-* accessing environment.properties in loggingg
+* accessing environment.properties in logging
 * conditional config examples in logback
 
 
@@ -16,7 +16,7 @@ logdemo is a Springboot based reference project for logging libraries and config
 * config to guard against log4jshell
 * configuring file appenders (configuring rolling appenders and compression)
 * profile centric logging
-* accessing environment.properties in loggingg
+* accessing environment.properties in logging
 * masking of sensitive private data in logback
 * conditional config examples in logback
 

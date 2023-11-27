@@ -42,7 +42,7 @@
         </rollingPolicy>
     </appender>
 
-    <appender name="RollingFileJSON"
+    <appender name="json"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logs.dir}/${logname}-json.${ext}</file>
         <encoder class="ch.qos.logback.classic.encoder.JsonEncoder"/>
@@ -87,7 +87,7 @@
     <logger name="software.daveturner" level="debug" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
-        <appender-ref ref="RollingFileJSON" />
+        <appender-ref ref="json" />
         <appender-ref ref="logstash" />
     </logger>
 

@@ -6,6 +6,7 @@ logdemo is a Springboot based reference project for logging libraries and config
 * configuring file appenders (configuring rolling appenders and compression)
   * https://github.com/davetii/logdemo/tree/logback-file-appenders-sample
 * masking of sensitive private data in logback
+  * https://github.com/davetii/logdemo/tree/logback-mask-sample
 * profile centric logging
 * accessing environment.properties in loggingg
 * conditional config examples in logback

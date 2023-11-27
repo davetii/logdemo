@@ -1,6 +1,6 @@
 package software.daveturner.logdemo;
 
-public class SampleObject {
+public class PersonInfo {
 
     private String name;
     private String email;
@@ -29,5 +29,7 @@ public class SampleObject {
     public void setRoles(String role) {
         this.role = role;
     }
+
+
 
 }

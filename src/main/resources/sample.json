@@ -1,0 +1,18 @@
+[
+	{
+		"name" :"Andrea", 
+		"email" : "andrea@yahoo.com" ,
+		"role" : "Bartender"
+	}, 
+	{
+		"name" :"Bob", 
+		"email" : "bob.1.bobo@google.com" ,
+		"role" : "Cook"
+	}, 
+	{
+		"name" :"Connie", 
+		"email" : "connie@somejob.com" ,
+		"role" : "Waitress"
+	}
+
+]
